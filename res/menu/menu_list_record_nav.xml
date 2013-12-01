@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/menu_list_record_add" android:title="@string/list_record_menu_add" android:showAsAction="always"></item>
+    <item android:id="@+id/menu_list_record_statistics" android:title="@string/list_record_menu_statistics" android:showAsAction="always"></item>
+    <item android:id="@+id/menu_list_record_preference" android:title="@string/list_record_menu_preference" android:showAsAction="always"></item>
+    
+	
+</menu>

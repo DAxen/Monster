@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/prefer_category_title_basic" >
+        <SwitchPreference
+            android:enabled="true"
+            android:key="prefer_switch_sms"
+            android:selectable="true"
+            android:summary="@string/prefer_summary_sms_analyse"
+            android:switchTextOff="@string/prefer_switch_off"
+            android:switchTextOn="@string/prefer_switch_on"
+            android:title="@string/prefer_swtich_title_sms_analyse" />
+        <SwitchPreference
+            android:disableDependentsState="false"
+            android:enabled="true"
+            android:key="prefer_switch_notification"
+            android:selectable="true"
+            android:summary="@string/prefer_summary_notification"
+            android:switchTextOff="@string/prefer_switch_off"
+            android:switchTextOn="@string/prefer_switch_on"
+            android:title="@string/prefer_swtich_title_notification" />
+        <SwitchPreference
+            android:enabled="true"
+            android:key="prefer_switch_intelligence"
+            android:selectable="true"
+            android:summary="@string/prefer_summary_intelligence"
+            android:switchTextOff="@string/prefer_switch_off"
+            android:switchTextOn="@string/prefer_switch_on"
+            android:title="@string/prefer_swtich_title_intelligent_analyse" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/prefer_category_title_function" >
+        <Preference android:title="@string/prefer_func_account_manage" android:summary="@string/prefer_summary_account_manage" android:key="prefer_func_account_mng"></Preference>
+        <Preference android:title="@string/prefer_func_type_manage" android:summary="@string/prefer_summary_type_manage" android:key="prefer_func_type_mng"></Preference>
+        
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/prefer_category_title_other" >
+        <Preference android:title="@string/prefer_other_init" android:summary="@string/prefer_summary_init"/>
+        <Preference android:title="@string/prefer_other_bugreport" android:summary="@string/prefer_summary_bugreport"/>
+        <Preference android:title="@string/prefer_other_about" android:summary="@string/prefer_summary_about"/>
+        
+    </PreferenceCategory>
+
+</PreferenceScreen>

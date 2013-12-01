@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="default_type_income">
+        <item >Salary</item>
+        <item >Bonus</item>
+        <item >Interest</item>
+        <item >Stock</item>
+        <item >Gift</item>
+        <item >Sales Income</item>
+        <item >Reimbursement</item>
+    </string-array>
+    <string-array name="default_account">
+        <item >Cash</item>
+        <item >Debit Card</item>
+        <item >Credit Card</item>
+        <item >Catering Card</item>
+        <item >Public Transit Card</item>
+    </string-array>
+    <string-array name="default_type_expend">
+        <item >Breakfast</item>
+        <item >Lunch</item>
+        <item >Dinner</item>
+        <item >Snacks</item>
+        <item >Fruit</item>
+        <item >Drink</item>
+        <item >Mail&amp;Express</item>
+        <item >Transpotation</item>
+        <item >Books</item>
+        <item >Midnight snack</item>
+        <item >Shopping</item>
+        <item >Entertainment</item>
+        <item >Medication</item>
+    </string-array>
+    
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="default_type_income">
+        <item >工资</item>
+        <item >奖金</item>
+        <item >分红</item>
+        <item >股票</item>
+        <item >礼金</item>
+        <item >销售收入</item>
+        <item >报销</item>
+    </string-array>
+    <string-array name="default_account">
+        <item >现金</item>
+        <item >储蓄卡</item>
+        <item >信用卡</item>
+        <item >饭卡</item>
+        <item >公交卡</item>
+    </string-array>
+    <string-array name="default_type_expend">
+        <item >早餐</item>
+        <item >午餐</item>
+        <item >晚餐</item>
+        <item >零食</item>
+        <item >水果</item>
+        <item >饮料</item>
+        <item >邮政快递</item>
+        <item >交通</item>
+        <item >图书</item>
+        <item >夜宵</item>
+        <item >购物</item>
+        <item >娱乐</item>
+        <item >医药</item>
+    </string-array>
+    
+</resources>
