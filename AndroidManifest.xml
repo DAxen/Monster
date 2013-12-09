@@ -64,6 +64,14 @@
             android:label="@string/activity_label_date_picker"
             android:theme="@android:style/Theme.Holo.Dialog" >
         </activity>
+        <receiver
+            android:name="com.daxen.monster.utils.AlarmReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.daxen.monster.utils.AlarmReceiver" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

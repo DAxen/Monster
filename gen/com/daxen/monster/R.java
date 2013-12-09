@@ -270,6 +270,7 @@ public final class R {
         public static final int list_record_menu_statistics=0x7f07004b;
         public static final int menu_account_add=0x7f07006b;
         public static final int menu_type_add=0x7f07006f;
+        public static final int notif_ticker_text=0x7f070070;
         public static final int prefer_category_title_basic=0x7f07004f;
         public static final int prefer_category_title_function=0x7f070050;
         public static final int prefer_category_title_other=0x7f070051;

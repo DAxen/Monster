@@ -112,4 +112,5 @@
     <string name="time_picker_next">下一步</string>
     <string name="date_picker_prev">上一步</string>
     <string name="menu_type_add">新建</string>
+    <string name="notif_ticker_text">记账提醒</string>
 </resources>
