@@ -1,0 +1,8 @@
+Tally Monster Project Develop Log
+=================================
+
+2013-12-10 Daxen
+添加Notification功能, 每隔6小时提醒记账一次, 在通知栏显示通知, 点击通知栏通知打开AddRecord界面
+
+2013-12-01 Daxen
+创建Moster Git repo, 上传基础版本代码, 基本功能已实现.
