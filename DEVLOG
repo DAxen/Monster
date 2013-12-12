@@ -1,6 +1,9 @@
 Tally Monster Project Develop Log
 =================================
 
+2013-12-12 Daxen
+添加BugReport功能, 支持手工反馈bug和建议, 收集基本系统信息
+
 2013-12-10 Daxen
 添加Notification功能, 每隔6小时提醒记账一次, 在通知栏显示通知, 点击通知栏通知打开AddRecord界面
 
