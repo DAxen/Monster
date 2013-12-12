@@ -37,7 +37,7 @@
     
     <PreferenceCategory android:title="@string/prefer_category_title_other" >
         <Preference android:title="@string/prefer_other_init" android:summary="@string/prefer_summary_init"/>
-        <Preference android:title="@string/prefer_other_bugreport" android:summary="@string/prefer_summary_bugreport"/>
+        <Preference android:title="@string/prefer_other_bugreport" android:summary="@string/prefer_summary_bugreport" android:key="prefer_func_bug_report"/>
         <Preference android:title="@string/prefer_other_about" android:summary="@string/prefer_summary_about"/>
         
     </PreferenceCategory>

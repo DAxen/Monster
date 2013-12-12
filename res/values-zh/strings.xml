@@ -51,6 +51,7 @@
     <string name="activity_label_account_dialog">账户编辑</string>
     <string name="activity_label_time_picker">选择时间</string>
     <string name="activity_label_date_picker">选择日期</string>
+    <string name="activity_label_bug_report">问题和建议</string>
     <string name="tally_list_del_toast">账目已删除</string>
     <string name="statistics_tab_difference">对比统计</string>
     <string name="statistics_tab_income">收入报表</string>
@@ -113,4 +114,9 @@
     <string name="date_picker_prev">上一步</string>
     <string name="menu_type_add">新建</string>
     <string name="notif_ticker_text">记账提醒</string>
+    <string name="bug_report_email_title">电子邮件</string>
+    <string name="bug_report_content_title">问题与建议</string>
+    <string name="bug_report_button">提交</string>
+    <string name="bug_report_toast">发送成功</string>
+    <string name="bug_report_toast_fail">发送失败</string>
 </resources>

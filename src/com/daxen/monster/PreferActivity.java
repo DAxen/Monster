@@ -20,6 +20,7 @@ public class PreferActivity extends PreferenceActivity {
 	private Preference mPreferAccount;
 	private Preference mPreferType;
 	private SwitchPreference mPreferNotif;
+	private Preference mPreferBugReport;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class PreferActivity extends PreferenceActivity {
 		mPreferAccount = findPreference("prefer_func_account_mng");
 		mPreferType    = findPreference("prefer_func_type_mng");
 		mPreferNotif   = (SwitchPreference)findPreference("prefer_switch_notification");
+		mPreferBugReport = findPreference("prefer_func_bug_report");
 		if (null != mPreferAccount) {
 			Intent iAccount = new Intent(this, AccountMngActivity.class);
 			mPreferAccount.setIntent(iAccount);
@@ -48,6 +50,11 @@ public class PreferActivity extends PreferenceActivity {
 		
 		if (null != mPreferNotif) {
 			mPreferNotif.setOnPreferenceChangeListener(new OnPreferNotifChangeListener());
+		}
+		
+		if (null != mPreferBugReport) {
+			Intent iReport = new Intent(this, BugReportActivity.class);
+			mPreferBugReport.setIntent(iReport);
 		}
 	}
 	

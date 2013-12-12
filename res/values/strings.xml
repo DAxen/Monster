@@ -51,6 +51,7 @@
     <string name="activity_label_account_dialog">Account Edit</string>
     <string name="activity_label_time_picker">Time Picker</string>
     <string name="activity_label_date_picker">Date Picker</string>
+    <string name="activity_label_bug_report">Bug Report</string>
     <string name="tally_list_del_toast">Record has been deleted!</string>
 	<string name="statistics_tab_difference">Difference</string>
     <string name="statistics_tab_income">IncomeStatis</string>
@@ -113,4 +114,9 @@
     <string name="date_picker_prev">Prev</string>
     <string name="menu_type_add">Add</string>
     <string name="notif_ticker_text">Tally Reminder</string>
+    <string name="bug_report_email_title">Email</string>
+    <string name="bug_report_content_title">Bugs&amp;Suggestions</string>
+    <string name="bug_report_button">Commit</string>
+    <string name="bug_report_toast">Send Success!</string>
+    <string name="bug_report_toast_fail">Send Fail!</string>
 </resources>

@@ -7,6 +7,9 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="17" />
+    
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -63,6 +66,11 @@
             android:name=".DatePickerActivity"
             android:label="@string/activity_label_date_picker"
             android:theme="@android:style/Theme.Holo.Dialog" >
+        </activity>
+        <activity
+            android:name=".BugReportActivity"
+            android:label="@string/activity_label_bug_report"
+            android:uiOptions="splitActionBarWhenNarrow">
         </activity>
         <receiver
             android:name="com.daxen.monster.utils.AlarmReceiver"
