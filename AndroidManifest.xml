@@ -72,11 +72,36 @@
             android:label="@string/activity_label_bug_report"
             android:uiOptions="splitActionBarWhenNarrow">
         </activity>
+        
         <receiver
-            android:name="com.daxen.monster.utils.AlarmReceiver"
+            android:name="com.daxen.monster.utils.AlmMorReceiver"
             android:exported="false" >
             <intent-filter>
-                <action android:name="com.daxen.monster.utils.AlarmReceiver" />
+                <action android:name="com.daxen.monster.utils.AlmMorReceiver" />
+            </intent-filter>
+        </receiver>
+        
+        <receiver
+            android:name="com.daxen.monster.utils.AlmNoonReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.daxen.monster.utils.AlmNoonReceiver" />
+            </intent-filter>
+        </receiver>
+        
+        <receiver
+            android:name="com.daxen.monster.utils.AlmEvenReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.daxen.monster.utils.AlmEvenReceiver" />
+            </intent-filter>
+        </receiver>
+        
+        <receiver
+            android:name="com.daxen.monster.utils.AlmNightReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.daxen.monster.utils.AlmNightReceiver" />
             </intent-filter>
         </receiver>
 

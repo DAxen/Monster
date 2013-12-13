@@ -1,5 +1,6 @@
 package com.daxen.monster;
 
+import java.util.Calendar;
 import java.util.List;
 
 import android.app.ActionBar;
@@ -7,21 +8,31 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.SwitchPreference;
 import android.view.MenuItem;
 
 import com.daxen.monster.utils.AlarmReceiver;
+import com.daxen.monster.utils.AlmEvenReceiver;
+import com.daxen.monster.utils.AlmMorReceiver;
+import com.daxen.monster.utils.AlmNightReceiver;
+import com.daxen.monster.utils.AlmNoonReceiver;
 
 public class PreferActivity extends PreferenceActivity {
-	private static final String SHARED_PREFER_NAME = "prefer";
+	//private static final String TAG = "PreferenceActivity";
+	//private static final String SHARED_PREFER_NAME = "prefer";
 	private Preference mPreferAccount;
 	private Preference mPreferType;
 	private SwitchPreference mPreferNotif;
 	private Preference mPreferBugReport;
 	
+	private int REQ_CODE_MORNING = 1;
+	private int REQ_CODE_NOON    = 1;
+	private int REQ_CODE_EVENING = 1;
+	private int REQ_CODE_NIGHT   = 1;
+	
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -117,26 +128,102 @@ public class PreferActivity extends PreferenceActivity {
 		finish();
 	}
 	
+	// 设置早中晚三次提醒
 	private void EnableNotification() {
-		Intent i = new Intent(this, AlarmReceiver.class);
-		i.putExtra("test", "hello world");
-		PendingIntent sender = PendingIntent.getBroadcast(this, 0, i, 0);
-		// Alarm start time
-		long firstime=SystemClock.elapsedRealtime();
-		
-		// Schedule the alarm!
+		// get alarm service
         AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
         
-        // repeat every 6 hours
-        am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP
-                , firstime, 21600*1000, sender);
+		////////////////////  morning  ////////////////////
+		Intent iMor = new Intent(this, AlmMorReceiver.class);
+		iMor.putExtra("period", "morning");
+		PendingIntent senderMor = PendingIntent.getBroadcast(this, REQ_CODE_MORNING, iMor, 0);
+		
+		// morning start time 9:00
+		Calendar calMor = Calendar.getInstance();
+		calMor.setTimeInMillis(System.currentTimeMillis());
+		calMor.set(Calendar.HOUR_OF_DAY, 9);
+		calMor.set(Calendar.MINUTE, 0);
+		calMor.set(Calendar.SECOND, 0);
+        
+        // repeat every day
+        am.setRepeating(AlarmManager.RTC_WAKEUP
+                , calMor.getTimeInMillis(), 86400*1000, senderMor);
+        
+        ////////////////////  noon  ////////////////////
+        Intent iNoon = new Intent(this, AlmNoonReceiver.class);
+        iNoon.putExtra("period", "noon");
+		PendingIntent senderNoon = PendingIntent.getBroadcast(this, REQ_CODE_NOON, iNoon, 0);
+		
+		// noon start time 12:00
+		Calendar calNoon = Calendar.getInstance();
+		calNoon.setTimeInMillis(System.currentTimeMillis());
+		calNoon.set(Calendar.HOUR_OF_DAY, 12);
+		calNoon.set(Calendar.MINUTE, 0);
+		calNoon.set(Calendar.SECOND, 0);
+        
+        // repeat every day
+        am.setRepeating(AlarmManager.RTC_WAKEUP
+                , calNoon.getTimeInMillis(), 86400*1000, senderNoon);
+        
+        ////////////////////  evening  ////////////////////
+        Intent iEven = new Intent(this, AlmEvenReceiver.class);
+        iEven.putExtra("period", "evening");
+        PendingIntent senderEven = PendingIntent.getBroadcast(this, REQ_CODE_EVENING, iEven, 0);
+        
+        // evening start time 18:00
+        Calendar calEven = Calendar.getInstance();
+        calEven.setTimeInMillis(System.currentTimeMillis());
+        calEven.set(Calendar.HOUR_OF_DAY, 18);
+        calEven.set(Calendar.MINUTE, 0);
+        calEven.set(Calendar.SECOND, 0);
+		
+		// repeat every day
+		am.setRepeating(AlarmManager.RTC_WAKEUP
+                , calEven.getTimeInMillis(), 86400*1000, senderEven);
+		
+		////////////////////  night  ////////////////////
+		Intent iNight = new Intent(this, AlmNightReceiver.class);
+		iNight.putExtra("period", "night");
+		PendingIntent senderNight = PendingIntent.getBroadcast(this, REQ_CODE_NIGHT, iNight, 0);
+
+		// evening start time 18:00
+		Calendar calNight = Calendar.getInstance();
+		calNight.setTimeInMillis(System.currentTimeMillis());
+		calNight.set(Calendar.HOUR_OF_DAY, 21);
+		calNight.set(Calendar.MINUTE, 30);
+		calNight.set(Calendar.SECOND, 0);
+
+		// repeat every day
+		am.setRepeating(AlarmManager.RTC_WAKEUP
+				, calNight.getTimeInMillis(), 86400*1000, senderNight);
 	}
 	
 	private void DisableNotification() {
-		Intent i = new Intent(this, AlarmReceiver.class);
-		i.putExtra("test", "hello world");
-		PendingIntent sender = PendingIntent.getBroadcast(this, 0, i, 0);
+		// get alarm service
 		AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-		am.cancel(sender);
+		
+		// cancel morning
+		Intent iMor = new Intent(this, AlmMorReceiver.class);
+		iMor.putExtra("period", "morning");
+		PendingIntent senderMor = PendingIntent.getBroadcast(this, REQ_CODE_MORNING, iMor, 0);
+		am.cancel(senderMor);
+		
+		// cancel noon
+		Intent iNoon = new Intent(this, AlmNoonReceiver.class);
+		iNoon.putExtra("period", "noon");
+		PendingIntent senderNoon = PendingIntent.getBroadcast(this, REQ_CODE_NOON, iNoon, 0);
+		am.cancel(senderNoon);
+		
+		// cancel evening
+		Intent iEven = new Intent(this, AlmEvenReceiver.class);
+		iEven.putExtra("period", "evening");
+		PendingIntent senderEven = PendingIntent.getBroadcast(this, REQ_CODE_EVENING, iEven, 0);
+		am.cancel(senderEven);
+		
+		// cancel night
+		Intent iNight = new Intent(this, AlmNightReceiver.class);
+		iNight.putExtra("period", "night");
+		PendingIntent senderNight = PendingIntent.getBroadcast(this, REQ_CODE_NIGHT, iNight, 0);
+		am.cancel(senderNight);
 	}
 }
