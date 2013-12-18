@@ -295,6 +295,10 @@ public final class R {
         public static final int notif_noon_content_info=0x7f070077;
         public static final int notif_noon_content_text=0x7f070076;
         public static final int notif_noon_content_title=0x7f070075;
+        public static final int notif_sms_content_info=0x7f070086;
+        public static final int notif_sms_content_text=0x7f070085;
+        public static final int notif_sms_content_title=0x7f070084;
+        public static final int notif_sms_ticker_text=0x7f070083;
         public static final int notif_ticker_text=0x7f070071;
         public static final int prefer_category_title_basic=0x7f070050;
         public static final int prefer_category_title_function=0x7f070051;

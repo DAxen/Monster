@@ -131,4 +131,8 @@
     <string name="bug_report_button">Commit</string>
     <string name="bug_report_toast">Send Success!</string>
     <string name="bug_report_toast_fail">Send Fail!</string>
+    <string name="notif_sms_ticker_text">Here comes a Tally!</string>
+    <string name="notif_sms_content_title">Tally Reminder</string>
+    <string name="notif_sms_content_text">Seems u have an amount change sms, touch to add tally~</string>
+    <string name="notif_sms_content_info">Tally Monster</string>
 </resources>

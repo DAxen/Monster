@@ -7,13 +7,14 @@ import android.app.ActionBar;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.SwitchPreference;
 import android.view.MenuItem;
 
-import com.daxen.monster.utils.AlarmReceiver;
 import com.daxen.monster.utils.AlmEvenReceiver;
 import com.daxen.monster.utils.AlmMorReceiver;
 import com.daxen.monster.utils.AlmNightReceiver;
@@ -21,11 +22,14 @@ import com.daxen.monster.utils.AlmNoonReceiver;
 
 public class PreferActivity extends PreferenceActivity {
 	//private static final String TAG = "PreferenceActivity";
-	//private static final String SHARED_PREFER_NAME = "prefer";
+	public static final String SHARED_PREFER_NAME = "prefer";
+	public static final String SP_KEY_SMART_SELECTION = "smart_selection";
+	
 	private Preference mPreferAccount;
 	private Preference mPreferType;
 	private SwitchPreference mPreferNotif;
 	private Preference mPreferBugReport;
+	private SwitchPreference mPreferSmartSel;
 	
 	private int REQ_CODE_MORNING = 1;
 	private int REQ_CODE_NOON    = 1;
@@ -49,6 +53,7 @@ public class PreferActivity extends PreferenceActivity {
 		mPreferType    = findPreference("prefer_func_type_mng");
 		mPreferNotif   = (SwitchPreference)findPreference("prefer_switch_notification");
 		mPreferBugReport = findPreference("prefer_func_bug_report");
+	    mPreferSmartSel = (SwitchPreference)findPreference("prefer_switch_intelligence");
 		if (null != mPreferAccount) {
 			Intent iAccount = new Intent(this, AccountMngActivity.class);
 			mPreferAccount.setIntent(iAccount);
@@ -60,16 +65,20 @@ public class PreferActivity extends PreferenceActivity {
 		}
 		
 		if (null != mPreferNotif) {
-			mPreferNotif.setOnPreferenceChangeListener(new OnPreferNotifChangeListener());
+			mPreferNotif.setOnPreferenceChangeListener(new PreferNotifChangeListener());
 		}
 		
 		if (null != mPreferBugReport) {
 			Intent iReport = new Intent(this, BugReportActivity.class);
 			mPreferBugReport.setIntent(iReport);
 		}
+		
+		if (null != mPreferSmartSel) {
+			mPreferSmartSel.setOnPreferenceChangeListener(new PreferSmartSelChangeListener());
+		}
 	}
 	
-	class OnPreferNotifChangeListener implements Preference.OnPreferenceChangeListener  {
+	class PreferNotifChangeListener implements Preference.OnPreferenceChangeListener  {
 
 		@Override
 		public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -86,6 +95,27 @@ public class PreferActivity extends PreferenceActivity {
 				// Disable Notification
 				// Toast.makeText(getApplicationContext(), "Notification Off", Toast.LENGTH_SHORT).show();
 				DisableNotification();
+			}
+			return true;
+		}
+		
+	}
+	
+	class PreferSmartSelChangeListener implements Preference.OnPreferenceChangeListener {
+
+		@Override
+		public boolean onPreferenceChange(Preference preference, Object newValue) {
+			Boolean swPrefer = (Boolean)newValue;
+			if (null == swPrefer) {
+				return false;
+			}
+			
+			if (swPrefer) {
+				// Enable SmartSelection
+				SetSmartSelection(true);
+			}
+			else {
+				SetSmartSelection(false);
 			}
 			return true;
 		}
@@ -225,5 +255,15 @@ public class PreferActivity extends PreferenceActivity {
 		iNight.putExtra("period", "night");
 		PendingIntent senderNight = PendingIntent.getBroadcast(this, REQ_CODE_NIGHT, iNight, 0);
 		am.cancel(senderNight);
+	}
+	
+	private void SetSmartSelection(boolean state) {
+		// ªÒ»°shared preferences
+		SharedPreferences sp = getSharedPreferences(SHARED_PREFER_NAME, MODE_PRIVATE);
+		
+		// ±‡º≠shared preferences
+	    Editor edt = sp.edit();
+	    edt.putBoolean(SP_KEY_SMART_SELECTION, state);
+	    edt.commit();
 	}
 }

@@ -169,4 +169,28 @@ public class AddIncomeFragment extends AddRecordFragment {
 		mDateTime = cur.format("%Y-%m-%d %H:%M");
 		mTime.setText(mDateTime);
 	}
+
+	@Override
+	public void SetContent(TallyRaw tally) {
+		if (-1 != tally.mAmount) {
+			Double a = tally.mAmount;
+			mAmount.setText(a.toString());
+		}
+		
+		if (-1 != tally.mType) {
+			mType.setSelection(tally.mType-1);
+		}
+		
+		if (-1 != tally.mAccount) {
+			mAccount.setSelection(tally.mAccount-1);
+		}
+		
+		if (null != tally.mTime) {
+			mTime.setText(tally.mTime);
+		}
+		
+		if (null != tally.mRemark) {
+			mRemark.setText(tally.mRemark);
+		}
+	}
 }

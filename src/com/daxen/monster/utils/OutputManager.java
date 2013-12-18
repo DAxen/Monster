@@ -233,6 +233,11 @@ public class OutputManager {
 		TallyRaw tally = new TallyRaw();
 		tally.mId = item.mId;
 		tally.mTallyMode = item.mTallyMode;
+		tally.mAmount    = item.mAmount;
+		tally.mType      = item.mType;
+		tally.mAccount   = item.mAccount;
+		tally.mTime      = item.mTime;
+		tally.mRemark    = item.mRemark;
 		return tally;
 	}
 	

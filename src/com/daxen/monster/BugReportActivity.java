@@ -65,7 +65,7 @@ public class BugReportActivity extends Activity {
 	// 需要起一个新的线程，否则会抛出异常NetworkOnMainThreadException
 	void BugReport() {
 		// URL
-		String httpUrl = "http://192.168.2.100/Monster/BugReport.php";
+		String httpUrl = "http://daxen.xicp.net:1211/Monster/BugReport.php";
 		// HttpPost对象
 		HttpPost httpRequest = new HttpPost(httpUrl);
 		// POST参数

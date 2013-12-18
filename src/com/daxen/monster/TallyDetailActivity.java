@@ -3,6 +3,7 @@ package com.daxen.monster;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.daxen.monster.utils.ErrorCode;
 import com.daxen.monster.utils.OutputManager;
+import com.daxen.monster.utils.TallyRaw;
 
 /**
  * @author  Gsy
@@ -115,7 +117,7 @@ public class TallyDetailActivity extends Activity {
 			finish();
 			break;
 		case R.id.menu_detail_edit:
-			//Ìø×ªÖÁ±à¼­Ò³Ãæ
+			EditTally();
 			break;
 		default:
 			break;
@@ -138,6 +140,22 @@ public class TallyDetailActivity extends Activity {
 		if (ErrorCode.SUCCESS != ret) {
 			Log.e(TAG, "InitContent return["+ret+"]");
 		}
+	}
+	
+	private void EditTally() {
+		TallyRaw tally = mOutputMgr.GetTallyInfo(mPosition);
+		
+		Intent i = new Intent(this, AddRecordActivity.class);
+		i.putExtra("intent_type", AddRecordActivity.ADD_RECORD_INTENT_EDIT);
+		i.putExtra("id", tally.mId);
+		i.putExtra("mode", tally.mTallyMode);
+		i.putExtra("amount", tally.mAmount);
+		i.putExtra("type", tally.mType);
+		i.putExtra("account", tally.mAccount);
+		i.putExtra("time", tally.mTime);
+		i.putExtra("remark", tally.mRemark);
+		
+    	startActivity(i);
 	}
 	
 }

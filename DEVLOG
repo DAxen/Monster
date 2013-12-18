@@ -1,6 +1,9 @@
 Tally Monster Project Develop Log
 =================================
 
+2013-12-13 Daxen
+完善Notification功能，实现每天早中晚4次提醒，感觉是时候优化一下界面，我需要一个图标
+
 2013-12-12 Daxen
 添加BugReport功能, 支持手工反馈bug和建议, 收集基本系统信息
 

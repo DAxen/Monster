@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.daxen.monster.fragments.AddExpendFragment;
 import com.daxen.monster.fragments.AddIncomeFragment;
 import com.daxen.monster.fragments.AddRecordFragment;
+import com.daxen.monster.fragments.SmsParser;
 import com.daxen.monster.utils.ErrorCode;
 import com.daxen.monster.utils.InputManager;
 import com.daxen.monster.utils.TallyRaw;
@@ -35,6 +36,8 @@ import com.daxen.monster.utils.TallyRaw;
  * 
  */
 public class AddRecordActivity extends Activity implements ActionBar.TabListener  {
+	public  static int ADD_RECORD_INTENT_SMS   = 0;
+	public  static int ADD_RECORD_INTENT_EDIT = 1;
 	private static final String TAG = "AddRecordActivity";
 	
 	private InputManager    mInputMgr;
@@ -78,8 +81,40 @@ public class AddRecordActivity extends Activity implements ActionBar.TabListener
         Bundle extras = getIntent().getExtras();
         mTime = extras != null ? extras.getString("date_time") : null;
         Log.v(TAG, "extras time:"+mTime);
-        		
+        
         Log.v(TAG, "onCreate success!");
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		Log.v(TAG, "onPause");
+	}
+
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		Log.v(TAG, "onRestart");
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.v(TAG, "onResume");
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		SmsAddRecord();
+        EditRecord();
+		Log.v(TAG, "onStart");
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		Log.v(TAG, "onStop");
 	}
 	
 	@Override
@@ -113,12 +148,24 @@ public class AddRecordActivity extends Activity implements ActionBar.TabListener
 	}
 
 	@Override
-	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+	public void onTabReselected(Tab tab, FragmentTransaction arg1) {
+		Log.v(TAG, "onTabReselected:"+(tab.getPosition()));
+		switch (tab.getPosition()) {
+		case 0:
+			ShowExpendFragment();
+			break;
+		case 1:
+			ShowIncomeFragment();
+			break;
+		default:
+			break;
+		}
 		Log.v(TAG, "onTabReselected");
 	}
 
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		Log.v(TAG, "onTabSelected:"+(tab.getPosition()));
 		switch (tab.getPosition()) {
 		case 0:
 			ShowExpendFragment();
@@ -205,5 +252,58 @@ public class AddRecordActivity extends Activity implements ActionBar.TabListener
 	private void OpenPreferencePage() {
 		Intent i = new Intent(this, PreferActivity.class);
 		startActivity(i);
+	}
+	
+	private void SmsAddRecord() {
+		Bundle extras = getIntent().getExtras();
+		int intentType = extras != null ? extras.getInt("intent_type",	-1) : -1;
+        
+        if (ADD_RECORD_INTENT_SMS != intentType) {
+        	return;
+        }
+        
+        TallyRaw tally = new TallyRaw();
+        tally.mId        = extras.getInt("id", -1);
+        tally.mTallyMode = extras.getInt("mode", -1);
+        tally.mAmount    = extras.getDouble("amount", -1);
+        tally.mType      = extras.getInt("type", -1);
+        tally.mAccount   = extras.getInt("account", -1);
+        tally.mTime      = extras.getString("time", null);
+        tally.mRemark    = extras.getString("remark", null);
+        
+        final ActionBar actionBar = getActionBar();
+        actionBar.setSelectedNavigationItem(1-tally.mTallyMode);
+        
+        AddRecordFragment fragment = (AddRecordFragment)mFragMgr.findFragmentById(R.id.add_record_frag_container);
+        fragment.SetContent(tally);
+	}
+	
+	private void EditRecord() {
+		Log.v(TAG, "EditRecord");
+		Bundle extras = getIntent().getExtras();
+		int intentType = extras != null ? extras.getInt("intent_type",	-1) : -1;
+        
+        if (ADD_RECORD_INTENT_EDIT != intentType) {
+        	return;
+        }
+        
+        TallyRaw tally = new TallyRaw();
+        tally.mId        = extras.getInt("id", -1);
+        tally.mTallyMode = extras.getInt("mode", -1);
+        tally.mAmount    = extras.getDouble("amount", -1);
+        tally.mType      = extras.getInt("type", -1);
+        tally.mAccount   = extras.getInt("account", -1);
+        tally.mTime      = extras.getString("time", null);
+        tally.mRemark    = extras.getString("remark", null);
+        
+        final ActionBar actionBar = getActionBar();
+        actionBar.setSelectedNavigationItem(1-tally.mTallyMode);
+        Log.v(TAG, "setSelectedNavigationItem:"+(1-tally.mTallyMode));
+        
+        AddRecordFragment fragment = (AddRecordFragment)mFrag;
+        if (null != fragment) {
+        	fragment.SetContent(tally);
+        	Log.v(TAG, "frag SetContent");
+        }
 	}
 }

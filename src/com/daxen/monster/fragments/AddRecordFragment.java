@@ -8,4 +8,5 @@ public abstract class AddRecordFragment extends Fragment {
 
 	public abstract TallyRaw GetTallyRaw();
 	public abstract void ClearContent();
+	public abstract void SetContent(TallyRaw tally);
 }

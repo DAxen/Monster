@@ -20,6 +20,7 @@ import com.daxen.monster.TimePickerActivity;
 import com.daxen.monster.utils.AccountManager;
 import com.daxen.monster.utils.ErrorCode;
 import com.daxen.monster.utils.RequestCode;
+import com.daxen.monster.utils.SmartSelection;
 import com.daxen.monster.utils.TallyRaw;
 import com.daxen.monster.utils.TypeManager;
 
@@ -138,6 +139,14 @@ public class AddExpendFragment extends AddRecordFragment {
 				arg0.setVisibility(View.VISIBLE);
 			}
 		});
+		
+		// smart selection
+		SmartSelection ss = SmartSelection.Instance(mActivity);
+		if (null != ss) {
+			mTypeNo = ss.GetExpendTypeId();
+			mType.setSelection(mTypeNo-1);
+		}
+		
 	}
 	
 	private void InitAccountSpinner() {
@@ -164,5 +173,29 @@ public class AddExpendFragment extends AddRecordFragment {
 		cur.setToNow();
 		mDateTime = cur.format("%Y-%m-%d %H:%M");
 		mTime.setText(mDateTime);
+	}
+
+	@Override
+	public void SetContent(TallyRaw tally) {
+		if (-1 != tally.mAmount) {
+			Double a = tally.mAmount;
+			mAmount.setText(a.toString());
+		}
+		
+		if (-1 != tally.mType) {
+			mType.setSelection(tally.mType-1);
+		}
+		
+		if (-1 != tally.mAccount) {
+			mAccount.setSelection(tally.mAccount-1);
+		}
+		
+		if (null != tally.mTime) {
+			mTime.setText(tally.mTime);
+		}
+		
+		if (null != tally.mRemark) {
+			mRemark.setText(tally.mRemark);
+		}
 	}
 }

@@ -131,4 +131,8 @@
     <string name="bug_report_button">提交</string>
     <string name="bug_report_toast">发送成功</string>
     <string name="bug_report_toast_fail">发送失败</string>
+    <string name="notif_sms_ticker_text">余额变动提醒来啦~</string>
+    <string name="notif_sms_content_title">记账提醒</string>
+    <string name="notif_sms_content_text">似乎你有一条余额变动提醒短信，点击记账</string>
+    <string name="notif_sms_content_info">怪兽账本</string>
 </resources>
